@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosegur Alarms</title>
+    <link rel="website icon" href="Imagenes/icon.png">
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+
+  .form label {
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+.form label img {
+    margin: 0;
+    width: 60px;
+}
+
+  .form2 label {
+      align-items: center;
+      margin-bottom: 25px;
+  }
+  .form2 label img {
+      margin: 0;
+      width: 50px;
+  }
+  .form2 label input {
+      width: 100%;
+      padding: 10px;
+      background-color: #fff;
+      border: none;
+      outline: none;
+      border-radius: 20px;
+      color: #333;
+  }
+  .form2 label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    margin-right: 150px;
+    padding: 0 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.1);
+  }
+
+  
+</style>
+
+</head>
+<body>
+    <div class="contenedor5">
+        <img src="imagenes/Icono.png" alt="" class="imagen">
+        <h2 class="titulo">REGISTRO DE USUARIO</h2>
+        <div class="container-form">
+            <div class="information">
+                <div class="infor-childs">
+                    <h2 style="color: white" data-i18n="Ingreso">Registrate</h2>
+                    <p style="color: white" data-i18n="IngresarContrato">Por favor su Nombre, Apellido, Correo y una contraseña</p>
+                    <form class="form2" method="POST" action="./Php/crear_usuario.php">
+                      
+                        <label>
+                            <div class="paragraph-with-image">
+                                <img src='Imagenes/nombre.png' alt="">
+                                <input id="NCliente" type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+                            </div>
+                        </label>
+                        <label>
+                            <div class="paragraph-with-image">
+                                <img src='Imagenes/nombre.png' alt="">
+                                <input id="ApellidoCliente" type="text" name="apellido" class="form-control" placeholder="Apellido" required>
+                            </div>
+                        </label>
+                        <label>
+                            <div class="paragraph-with-image">
+                                <img src='Imagenes/Ubicacion.png' alt="">
+                                <input id="CorreoCliente" type="email" name="email" class="form-control" placeholder="Correo" required>
+                            </div>
+                        </label>
+                        <label>
+                            <div class="paragraph-with-image">
+                                <img src='Imagenes/telefono.png' alt="">
+                                <input id="PassCliente" type="password" name="password" class="form-control" placeholder="Contraseña" required minlength="6">
+                            </div>
+                        </label>
+                        <input type="submit" class="btn-primary" value="Registrar" data-i18n="Registrar">
+                    </form>
+                </div>
+            </div>
+
+    
+    
+            <div class="form-information">
+                <h2 style="color: white" data-i18n="Ingreso">Ingreso</h2>
+                <p style="color: white" data-i18n="IngresarContrato">Por favor Ingresar Contrato y Legajo</p>
+                <form class="form" method="POST" action="./Php/login.php" onsubmit="return validarFormulario()">
+                    <label>
+                        <div class="paragraph-with-image">
+                            <img src='Imagenes/contrato-min.png' alt="">
+                            <input type="email" class="form-control" placeholder="Correo Electrónico" id="Email" name="Email" required>
+                        </div>
+                    </label>
+                    <label>
+                        <div class="paragraph-with-image">
+                            <img src='Imagenes/User-min.png' alt="">
+                            <input type="password" class="form-control" placeholder="Contraseña" id="Password" name="Password" required>
+                        </div>
+                    </label>
+                    <input type="submit" class="btn-primary" value="Ingresar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('error')) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Credenciales no válidas',
+                text: 'El correo o la contraseña son incorrectos. Por favor, inténtelo de nuevo.',
+                confirmButtonText: 'Aceptar'
+            });
+        }
+        // Función para mostrar el mensaje de registro exitoso
+        function showMessage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const message = urlParams.get('message');
+
+            if (message === 'registro_exitoso') {
+                Swal.fire({
+                    title: '¡Registro exitoso!',
+                    text: 'Tu cuenta ha sido creada.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                });
+            }
+
+            // Puedes agregar más mensajes aquí si es necesario
+        }
+
+        // Llamar a la función al cargar la página
+        window.onload = showMessage;
+    </script>
+ 
+</body>
+</html>
+
+
+
